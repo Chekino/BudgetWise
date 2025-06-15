@@ -57,28 +57,4 @@ const getBudget = async (req, res) => {
   }
 };
 
-// Supprimer le budget
-const deleteBudget = async (req, res) => {
-  try {
-    let month = req.query.month;
-    if (!month) {
-      month = getCurrentMonth();
-    }
-
-    const deleted = await Budget.findOneAndDelete({
-      user: req.user._id,
-      month,
-    });
-
-    if (!deleted)
-      return res.status(404).json({ message: "Aucun budget à supprimer." });
-
-    res.json({ message: "Budget supprimé avec succès." });
-  } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Erreur lors de la suppression.", error: err.message });
-  }
-};
-
-module.exports = { setBudget, getBudget, deleteBudget };
+module.exports = { setBudget, getBudget };
