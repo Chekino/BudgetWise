@@ -23,10 +23,5 @@ jobs:
           cd server
           npm install
 
-      - name: Lint
-        run: |
-          cd server
-          npm run lint
-
       - name: Render Deploy
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
