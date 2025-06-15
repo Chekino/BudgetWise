@@ -12,6 +12,14 @@ const app = express();
 
 app.use(cors());
 app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"], // Permet  les ressources du même domaine
+      connectSrc: ["'self'", "https://budgetwise-2fnw.onrender.com"], // Permet les connexions API
+    },
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
